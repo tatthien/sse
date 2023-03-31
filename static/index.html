@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SSE</title>
+
+    <style>
+      body {
+        font-family: system-ui;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Server-sent events</h1>
+    <ul class="message-list"></ul>
+  </body>
+
+  <script>
+    const source = new EventSource("/sse");
+    const messageList = document.querySelector(".message-list");
+    source.onmessage = (event) => {
+      const li = document.createElement("li");
+      li.textContent = event.data;
+      messageList.appendChild(li);
+    };
+  </script>
+</html>
